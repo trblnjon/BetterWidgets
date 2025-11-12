@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>BetterWidgets</title>
+	<link rel="stylesheet" href="index.css" />
+	<link rel="stylesheet" href="render.css" />
+	<link rel="stylesheet" href="/src/weather/weather.css" />
+	<script src="render.js"></script>
+	<div id="titlebar">
+		<div class="descriptionBar">
+			<img id="logo-btn" src="../assets/icon.png" alt="Logo" />
+		</div>
+		<div class="widget-controls">
+			<button class="sesion-btn" id="loginBtn"><img src="../assets/login.png" alt="login"></button>
+			<button class="sesion-btn" id="logoutBtn"><img src="../assets/logout.png" alt="login"></button>
+			<button class="sesion-btn" id="btn-cargar-eventos"><img src="../assets/refresh.png" alt="refresh"></button>
+		</div>
+		<div class="window-controls">
+			<button id="min-btn">
+				<img src="../assets/minimizar.png" alt="Minimizar">
+			</button>
+			<button id="close-btn">
+				<img src="../assets/cerrar.png" alt="Cerrar">
+			</button>
+		</div>
+	</div>
+</head>
+<body>
+	<div class="div-container">
+		<div class="top-container">
+			<div class="calendar">
+				<div class="hoja-calendario">
+					<div class="calendario">
+						<div class="days-month">
+							<span><img src="../assets/1.png" alt="temporada"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="weather">
+				<div class="widget">
+					<div class="clock-weather">
+						<img src="../assets/flecha.png" alt="clima">
+					</div>
+					<div class="time-zone">
+						<div class="day-month" id="day-month">
+						</div>
+						<div class="weather-temp">
+							<div class="div1">
+								<img src="../assets/clima.png" alt="clima">
+							</div>
+							<div class="div2">
+								<span></span>
+							</div>
+							<div class="div3">
+								<img src="../assets/temporada.png" alt="temporada">
+							</div>
+						</div>
+						<div class="time" id="clock-time">
+						</div>
+					</div>
+				</div>
+				<div class="junimo">
+					<img src="../assets/junimo-stardrop.gif" />
+				</div>
+			</div>
+		</div>
+		<div class="menu-container">
+			<button class="menu-btn" id="todo-btn"><span></span></button>
+			<button class="menu-btn" id="feelings-btn"><span></span></button>
+			<button class="menu-btn" id="pomodoro-btn"><span></span></button>
+			<button class="menu-btn" id="bouquet-btn"><span></span></button>
+		</div>
+	</div>
+	<script src="../src/weather/timeWidget.js"></script>
+	<script src="../src/weather/weather.js"></script>
+	<script src="./weather/calendario.js"></script>
+	<script>
+		document.getElementById("loginBtn").addEventListener("click", async () => {const res = await window.electronAPI.loginWithGoogle();
+			if (res.success) {
+				alert("Sesión iniciada correctamente.");
+			} else {
+				alert("Error: " + res.error);
+			}
+		});
+		document.getElementById("logoutBtn").addEventListener("click", async () => {const res = await window.electronAPI.logoutGoogle();
+			if (res.success) {
+				alert("Sesión cerrada.");
+			} else {
+				alert("Error: " + res.error);
+			}
+		});
+	</script>
+</body>
+</html>
